@@ -6,8 +6,7 @@
 trigger:
 - master
 
-pool:
-  vmImage: ubuntu-latest
+pool: Default
 
 steps:
 - task: NodeTool@0
@@ -19,3 +18,8 @@ steps:
     npm install
     npm run build
   displayName: 'npm install and build'
+
+- task: VSTest@2
+  inputs:
+    testSelector: 'testRun'
+    searchFolder: '$(System.DefaultWorkingDirectory)'
